@@ -1,8 +1,8 @@
 #!/bin/bash
-# date 2020-07-21 01:07:55
+# date 2020-10-13 23:07:55
 # author calllivecn <c-all@qq.com>
 
-set -ex
+set -e
 
 
 PHYICAL_WIFI=$PHY_WIFI_IFNAME

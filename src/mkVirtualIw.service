@@ -10,6 +10,8 @@ Restart=on-failure
 RestartSec=30
 
 EnvironmentFile=/etc/hostapd/linux2route.conf
+
+ExecStartPre=-iw dev $VIRTUAL_IW delete
 ExecStart=iw dev $PHY_WIFI_IFNAME interface add $VIRTUAL_IW type managerd addr "8c:c6:81:15:83:b8"
 ExecStop=iw dev $VIRTUAL_IW delete
 
