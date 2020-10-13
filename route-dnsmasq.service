@@ -1,7 +1,7 @@
 [Unit]
 Description=route LAN dnsmasq
-Requires=mkbridge.service
 After=mkbridge.service
+Requires=mkbridge.service
 
 [Service]
 Type=simple
@@ -9,7 +9,7 @@ Restart=on-failure
 RestartSec=30
 EnvironmentFile=/etc/hostapd/linux2route.conf
 PIDFile=/run/route-dnsmasq.pid
-ExecStart=/usr/sbin/dnsmasq --conf-file=/etc/hostapd/dnsmasq.conf --listen-address=$GWATEWAY --dhcp-range=$DHCP_RANGE,60m --dhcp-option=option:router,$GATEWAY
+ExecStart=/usr/sbin/dnsmasq --conf-file=/etc/hostapd/route-dnsmasq.conf --listen-address=$GWATEWAY --dhcp-range=$DHCP_RANGE,60m --dhcp-option=option:router,$GATEWAY
 
 [Install]
 WantedBy=multi-user.target

@@ -3,32 +3,16 @@
 # author calllivecn <c-all@qq.com>
 
 
-make_bridge(){
+set -e
 
-# Usage: ipbridge.sh <br_name> [slave1 [slave2...]]
+ip link add $LAN_IFNAME type bridge
 
-if [ -n "$1" ];then
-	BR="$1"
-else
-	echo "需要bridge名"
-	return 1
-fi
-
-ip link add "$BR" type bridge
-
-shift
-
-for slave in "$@"
+for slave in $BRIDGES
 do
 	#echo "$slave"
-	ip link set "$slave" master "$BR" 
+	ip link set "$slave" master $LAN_IFNAME 
 done
 
-ip link set "$BR" up
+ip link set $LAN_IFNAME up
 
-}
-
-
-make_bridge "$1" "$@"
-
-ip addr add "$GATEWAY_ADDR"
+ip addr add $GATEWAY
