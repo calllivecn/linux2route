@@ -11,8 +11,7 @@ RestartSec=30
 
 EnvironmentFile=/etc/hostapd/linux2route.conf
 
+ExecStartPre=-ip link delete dev $LAN_IFNAME
 ExecStart=/etc/hostapd/mkbridge.sh
-ExecStop=/usr/bin/ip link delete dev $LAN_IFNAME
+ExecStop=ip link delete dev $LAN_IFNAME
 
-[Install]
-WantedBy=multi-user.target
