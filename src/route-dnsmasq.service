@@ -6,9 +6,6 @@ Requires=mkbridge.service
 [Service]
 Type=simple
 
-Restart=on-failure
-RestartSec=30
-
 EnvironmentFile=/etc/hostapd/linux2route.conf
 PIDFile=/run/route-dnsmasq.pid
 

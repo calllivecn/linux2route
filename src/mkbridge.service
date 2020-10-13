@@ -6,9 +6,6 @@ After=sysinit.target
 Type=oneshot
 RemainAfterExit=yes
 
-Restart=on-failure
-RestartSec=30
-
 EnvironmentFile=/etc/hostapd/linux2route.conf
 
 ExecStartPre=-ip link delete dev $LAN_IFNAME
