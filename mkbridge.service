@@ -8,9 +8,11 @@ RemainAfterExit=yes
 
 Restart=on-failure
 RestartSec=30
+
 EnvironmentFile=/etc/hostapd/linux2route.conf
-ExecStart=/etc/hostapd/mkbridge.sh $LAN_IFNAME $BRIDGES
-ExecStop=/usr/bin/ip link delete dev $LAN
+
+ExecStart=/etc/hostapd/mkbridge.sh
+ExecStop=/usr/bin/ip link delete dev $LAN_IFNAME
 
 [Install]
 WantedBy=multi-user.target
