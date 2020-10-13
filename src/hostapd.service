@@ -7,7 +7,7 @@ Wants=mkVirtualIw.service
 Type=simple
 PIDFile=/run/hostapd.pid
 EnvironmentFile=/etc/hostapd/linux2route.conf
-ExecStart=hostapd -i $LAN_IFNAME /etc/hostapd/hostapd.conf
+ExecStart=hostapd -i $VIRTUAL_IW /etc/hostapd/hostapd.conf
 
 [Install]
 WantedBy=multi-user.target
