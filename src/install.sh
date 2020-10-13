@@ -18,6 +18,7 @@ cp -v hostapd.conf $HOSTPAD_DIR
 cp -v hostapd.service $SYSTEMD_UNIT
 cp -v mkbridge.service $SYSTEMD_UNIT
 cp -v route-dnsmasq.service $SYSTEMD_UNIT
+cp -v route-nftables.service $SYSTEMD_UNIT
 cp -v mkVirtualIw.service $SYSTEMD_UNIT
 
 systemctl daemon-reload || echo "请手动执行 sudo systemctl daemon-reload"

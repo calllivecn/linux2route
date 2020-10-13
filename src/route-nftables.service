@@ -10,7 +10,7 @@ EnvironmentFile=/etc/hostapd/linux2route.conf
 
 ExecStartPre=nft add table inet linux2route
 ExecStartPre=nft add chain inet linux2route postrouting { type nat hook postrouting priority srcnat; policy accept; }
-ExecStartPre=nft add chain inet linux2route route { type filter hook input priority 90; policy accept; }
+ExecStartPre=nft add chain inet linux2route route { type filter hook input priority 110; policy accept; }
 
 ExecStartPre=-nft add rule inet linux2route postrouting oif ${PHY_WIFI_IFNAME} counter masquerade
 ExecStartPre=nft add rule inet linux2route route iif ${LAN_IFNAME} counter accept
