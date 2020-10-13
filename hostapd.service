@@ -1,0 +1,15 @@
+[Unit]
+Description=Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+After=network.target
+;Wants=hostapd-dnsmasq.service
+
+[Service]
+Type=simple
+PIDFile=/run/hostapd.pid
+Restart=on-failure
+RestartSec=5
+EnvironmentFile=/etc/hostapd/apifname.env
+ExecStart=/etc/hostapd/AP0.sh $APIFNAME
+
+[Install]
+WantedBy=multi-user.target

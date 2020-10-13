@@ -1,0 +1,13 @@
+[Unit]
+Description=hostapd AP0 dnsmasq
+Requires=hostapd.service
+After=hostapd.service
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5
+ExecStart=/usr/sbin/dnsmasq --conf-file=/dev/null --no-hosts --keep-in-foreground --bind-interfaces --except-interface=lo --clear-on-reload --strict-order --listen-address=192.168.7.1 --dhcp-range=192.168.7.100,192.168.7.254,60m --dhcp-option=option:router,192.168.7.1 --dhcp-lease-max=50 --dhcp-leasefile=/etc/hostapd/dnsmasq-AP0.leases --pid-file=/run/dnsmasq-AP0.pid
+
+[Install]
+WantedBy=multi-user.target
