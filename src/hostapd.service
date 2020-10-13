@@ -1,13 +1,11 @@
 [Unit]
-Description=Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+Description=linux 无线热点 route hostapd 
 After=network.target mkVirtualIw.service
 Wants=mkVirtualIw.service
 
 [Service]
 Type=simple
 PIDFile=/run/hostapd.pid
-Restart=on-failure
-RestartSec=30
 EnvironmentFile=/etc/hostapd/linux2route.conf
 ExecStart=hostapd -i $LAN_IFNAME /etc/hostapd/hostapd.conf
 
