@@ -1,0 +1,16 @@
+[Unit]
+Description=创建 lan 桥接
+After=sysinit.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+Restart=on-failure
+RestartSec=30
+EnvironmentFile=/etc/hostapd/linux2route.conf
+ExecStart=/etc/hostapd/mkbridge.sh $LAN_IFNAME $BRIDGES
+ExecStop=/usr/bin/ip link delete dev $LAN
+
+[Install]
+WantedBy=multi-user.target
