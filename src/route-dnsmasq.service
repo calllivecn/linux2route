@@ -1,7 +1,7 @@
 [Unit]
 Description=route LAN dnsmasq
-After=mkbridge.service
-Requires=mkbridge.service
+After=mkbridge.service route-nftalbes.service
+Requires=mkbridge.service route-nftables.service
 
 [Service]
 Type=simple
