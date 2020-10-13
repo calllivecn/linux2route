@@ -15,4 +15,4 @@ done
 
 ip link set $LAN_IFNAME up
 
-ip addr add $GATEWAY
+ip addr add $IPNET dev $LAN_IFNAME
