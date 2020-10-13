@@ -8,8 +8,8 @@ Type=simple
 PIDFile=/run/hostapd.pid
 Restart=on-failure
 RestartSec=30
-EnvironmentFile=/etc/hostapd/apifname.env
-ExecStart=/etc/hostapd/AP0.sh $APIFNAME
+EnvironmentFile=/etc/hostapd/linux2route.conf
+ExecStart=/etc/hostapd/AP0.sh $
 
 [Install]
 WantedBy=multi-user.target
