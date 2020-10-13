@@ -9,7 +9,7 @@ Restart=on-failure
 RestartSec=30
 EnvironmentFile=/etc/hostapd/linux2route.conf
 PIDFile=/run/route-dnsmasq.pid
-ExecStart=/usr/sbin/dnsmasq --conf-file=/etc/hostapd/dnsmasq.conf --listen-address=$GWATEWAY --dhcp-range=$DHCP_RANGE,60m --dhcp-option=option:router,192.168.7.1
+ExecStart=/usr/sbin/dnsmasq --conf-file=/etc/hostapd/dnsmasq.conf --listen-address=$GWATEWAY --dhcp-range=$DHCP_RANGE,60m --dhcp-option=option:router,$GATEWAY
 
 [Install]
 WantedBy=multi-user.target
