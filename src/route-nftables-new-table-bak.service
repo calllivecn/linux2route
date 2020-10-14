@@ -1,0 +1,24 @@
+[Unit]
+Description=创建 路由器 SNAT 和 防火墙
+After=network.target mkVirtualIw.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+EnvironmentFile=/etc/hostapd/linux2route.conf
+
+ExecStartPre=nft add table inet linux2route
+ExecStartPre=nft add chain inet linux2route postrouting { type nat hook postrouting priority srcnat; policy accept; }
+ExecStartPre=nft add chain inet linux2route route { type filter hook input priority 110; policy accept; }
+
+ExecStartPre=-nft add rule inet linux2route postrouting oif ${PHY_WIFI_IFNAME} counter masquerade
+ExecStartPre=nft add rule inet linux2route route iifname ${LAN_IFNAME} ip daddr 255.255.255.255 udp dport { 67, 68 } counter accept comment "准许 DHCP 请求通过"
+
+ExecStart=echo OK!
+
+ExecStopPost=nft flush table inet linux2route
+ExecStopPost=nft delete chain inet linux2route route
+ExecStopPost=nft delete chain inet linux2route postrouting
+ExecStopPost=nft delete table inet linux2route
+
