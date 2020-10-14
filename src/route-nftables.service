@@ -13,7 +13,8 @@ ExecStartPre=nft add chain inet linux2route postrouting { type nat hook postrout
 ExecStartPre=nft add chain inet linux2route route { type filter hook input priority 110; policy accept; }
 
 ExecStartPre=-nft add rule inet linux2route postrouting oif ${PHY_WIFI_IFNAME} counter masquerade
-ExecStartPre=nft add rule inet linux2route route iif ${LAN_IFNAME} counter accept
+#ExecStartPre=nft add rule inet linux2route route iif ${LAN_IFNAME} counter accept
+ExecStartPre=nft add rule inet linux2route route ip daddr 255.255.255.255 udp dport { 67, 68 } counter accept comment "准许 DHCP 请求通过"
 
 ExecStart=echo OK!
 
