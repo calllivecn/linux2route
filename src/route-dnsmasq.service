@@ -11,7 +11,6 @@ PIDFile=/run/route-dnsmasq.pid
 
 ExecStartPre=-touch /etc/hostapd/route-dnsmasq.leases
 ExecStartPre=-env
-ExecStartPre=-echo dnsmasq --conf-file=/etc/hostapd/route-dnsmasq.conf --listen-address=${GATEWAY} --dhcp-range=${DHCP_RANGE},60m --dhcp-option=option:router,${GATEWAY}
 ExecStart=dnsmasq --conf-file=/etc/hostapd/route-dnsmasq.conf --listen-address=${GATEWAY} --dhcp-range=${DHCP_RANGE},60m --dhcp-option=option:router,${GATEWAY}
 
 [Install]
