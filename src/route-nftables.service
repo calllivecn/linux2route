@@ -13,7 +13,9 @@ ExecStartPre=nft add chain inet filter route
 
 ExecStartPre=-nft add rule inet filter postrouting oifname ${PHY_WIFI_IFNAME} counter masquerade
 #ExecStartPre=nft add rule inet filter route iifname ${LAN_IFNAME} ip daddr 255.255.255.255 udp dport { 67, 68 } counter accept comment \"准许 DHCP 请求通过\"
-ExecStartPre=nft add rule inet filter route iifname ${LAN_IFNAME} counter accept comment \"准许 ${LAN_IFNAME} \"
+#ExecStartPre=nft add rule inet filter route iifname ${LAN_IFNAME} counter accept comment \"准许 ${LAN_IFNAME} \"
+ExecStartPre=nft add rule inet filter route iifname ${LAN_IFNAME} udp dport 67 counter accept comment \"准许 DHCP udp port 67 通过 ${LAN_IFNAME} \"
+
 
 ExecStart=echo OK!
 
