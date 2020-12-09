@@ -11,6 +11,7 @@ for slave in $BRIDGES
 do
 	#echo "$slave"
 	ip link set "$slave" master $LAN_IFNAME 
+	ip link set "$slave" up
 done
 
 ip link set $LAN_IFNAME up

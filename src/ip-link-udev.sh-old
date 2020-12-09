@@ -1,0 +1,87 @@
+#!/bin/bash
+# date 2020-12-09 22:40:25
+# author calllivecn <c-all@qq.com>
+
+# 检测网络热插拔
+
+IFS_CFG="/etc/hostapd/ifnames.cfg"
+
+IFNAMES=
+IF_CHANGES=()
+
+
+getifnames(){
+	for ifname in $(readlink -f /sys/class/net/* |grep -v virtual)
+	do
+		echo ${ifname##*/}
+	done
+}
+
+
+if [ ! -z $IFS_CFG ] && [ -r $IFS_CFG ];then
+	IFNAMES=$(cat "$IFS_CFG")
+else
+	IFNAMES=$(getifnames)
+fi
+
+get_change(){
+	cat /sys/class/net/${1}/carrier_changes
+}
+
+check_carrier(){
+	cat /sys/class/net/${1}/carrier
+}
+
+init_change(){
+	local i=0
+	for IF in $IFNAMES
+	do
+		IF_CHANGES[$i]=$(get_change ${IF})
+		i=$[i + 1]
+	done
+
+	echo "init change: ${IF_CHANGES[@]}"
+}
+init_change
+
+carrier_updown(){
+	local ifname="$1"
+	S=$(check_carrier "${ifname}")
+	if [ "$S"x = x ];then
+		ip link set "${ifname}" up
+	elif [ "$S"x = "1"x ];then
+		ip link set "${ifname}" up
+	elif [ "$S"x = "0"x ];then
+		ip link set "${ifname}" down
+	else
+		echo "${ifname} 未知状态..." >&2
+	fi
+}
+
+
+run(){
+
+	while :
+	do
+		sleep 2
+		i=0
+
+		for ifname in $IFNAMES
+		do
+			C=$(get_change ${ifname})
+
+			if [ $C != ${IF_CHANGES[$i]} ];then
+				carrier_updown ${ifname}
+				IF_CHANGES[$i]=$(get_change ${ifname})
+				echo "${ifname} change..."
+			else
+				echo "${ifname} not change continue..."
+			fi
+
+			i=$[i + 1]
+
+		done
+	done
+}
+
+run
