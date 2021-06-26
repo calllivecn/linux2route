@@ -1,6 +1,6 @@
 [Unit]
 Description=创建虚拟无线网卡
-After=network.target
+After=multi-user.target
 
 [Service]
 Type=oneshot
