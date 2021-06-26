@@ -1,6 +1,6 @@
 [Unit]
 Description=创建 路由器 SNAT 和 防火墙
-After=network.target mkVirtualIw.service
+After=mkVirtualIw.service
 
 [Service]
 Type=oneshot

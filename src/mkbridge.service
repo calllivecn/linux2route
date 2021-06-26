@@ -1,6 +1,6 @@
 [Unit]
 Description=创建 lan 桥接
-After=sysinit.target
+After=multi-user.target
 
 [Service]
 Type=oneshot

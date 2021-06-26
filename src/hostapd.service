@@ -1,13 +1,20 @@
 [Unit]
 Description=linux 无线热点 route hostapd 
-After=network.target mkVirtualIw.service
-Wants=mkVirtualIw.service
+After=route-dnsmasq.service
+Wants=route-dnsmasq.service
+
+#After=mkVirtualIw.service
+#Wants=mkVirtualIw.service
 
 [Service]
 Type=simple
 PIDFile=/run/hostapd.pid
 EnvironmentFile=/etc/hostapd/linux2route.conf
-ExecStart=hostapd -i $VIRTUAL_IW /etc/hostapd/hostapd.conf
+ExecStartPre=-/usr/sbin/ip link set dev $PHY_WIFI_IFNAME up
+#ExecStart=hostapd -i $VIRTUAL_IW /etc/hostapd/hostapd.conf
+ExecStart=hostapd -i $PHY_WIFI_IFNAME /etc/hostapd/hostapd.conf
+Restart=always
+RestartSec=30s
 
 [Install]
 WantedBy=multi-user.target
