@@ -10,10 +10,11 @@ set -e
 
 [ -d $HOSTAPD_DIR ] || mkdir -vp $HOSTAPD_DIR
 
-cp -v linux2route.conf $HOSTPAD_DIR
-cp -v mkbridge.sh $HOSTPAD_DIR
-cp -v route-dnsmasq.conf $HOSTPAD_DIR
-cp -v hostapd.conf $HOSTPAD_DIR
+cp -v linux2route.conf $HOSTAPD_DIR
+cp -v mkbridge.sh $HOSTAPD_DIR
+cp -v route-dnsmasq.conf $HOSTAPD_DIR
+cp -v hostapd.conf $HOSTAPD_DIR
+cp -v route-nftables.sh $HOSTAPD_DIR
 
 cp -v hostapd.service $SYSTEMD_UNIT
 cp -v mkbridge.service $SYSTEMD_UNIT
