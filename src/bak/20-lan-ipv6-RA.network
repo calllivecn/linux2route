@@ -1,0 +1,11 @@
+[Match]
+Name=lan
+
+[Network]
+Description=LAN ipv6 route RA
+
+Address=2a01::1234:4321/64
+IPv6PrefixDelegation=static
+
+[IPv6PrefixDelegation]
+RouterLifetimeSec=100
