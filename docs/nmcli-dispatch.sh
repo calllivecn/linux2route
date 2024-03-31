@@ -1,6 +1,6 @@
 #!/bin/bash
 # date 2020-08-03 22:36:00
-# author calllivecn <c-all@qq.com>
+# author calllivecn <calllivecn@outlook.com>
 
 # $0 --> /etc/NetworkManager/dispatch.d/
 # chown root.root $0

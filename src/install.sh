@@ -1,6 +1,6 @@
 #!/bin/bash
 # date 2020-10-13 21:49:57
-# author calllivecn <c-all@qq.com>
+# author calllivecn <calllivecn@outlook.com>
 
 SYSTEMD_UNIT="/etc/systemd/system/"
 

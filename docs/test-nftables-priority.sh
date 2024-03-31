@@ -1,6 +1,6 @@
 #!/bin/bash
 # date 2020-10-14 09:46:55
-# author calllivecn <c-all@qq.com>
+# author calllivecn <calllivecn@outlook.com>
 
 NFT='sudo nft'
 

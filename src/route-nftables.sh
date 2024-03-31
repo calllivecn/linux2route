@@ -1,6 +1,6 @@
 #!/bin/bash
 # date 2021-12-19 23:27:24
-# author calllivecn <c-all@qq.com>
+# author calllivecn <calllivecn@outlook.com>
 
 start(){
 	nft add rule inet filter route iif ${LAN_IFNAME} udp dport { 67, 68 } counter accept comment \"准许 DHCP udp port 67 通过 ${LAN_IFNAME} \"
